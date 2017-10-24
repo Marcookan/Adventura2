@@ -33,16 +33,16 @@ public class HerniPlan {
      */
     private void zalozProstoryHry() {
         // vytvářejí se jednotlivé prostory
-        Prostor rozcesti = new Prostor("rozcestí","rozcestí, na kterém se Dobroslav probudí");
-        Prostor hrusen = new Prostor("hrušeň", "hrušeň, na kterém jsou hrušky");
-        Prostor mangovnik = new Prostor("mangovník","mangovník s mangem");
-        Prostor kaktus = new Prostor("kaktus","kaktus s podivuhodným plodem");
-        Prostor rybnik = new Prostor("rybník", "rybník"); 
-        Prostor udoli = new Prostor("údolí", "údolí které vede ke konečným chatkám");
-        Prostor zahrada = new Prostor("zahrada", "zahrada s bramborama");
+        Prostor rozcesti = new Prostor("rozcestí","rozcestí, na kterém se Dobroslav probudí", 110, 50);
+        Prostor hrusen = new Prostor("hrušeň", "hrušeň, na kterém jsou hrušky", 115, 55);
+        Prostor mangovnik = new Prostor("mangovník","mangovník s mangem", 120, 60);
+        Prostor kaktus = new Prostor("kaktus","kaktus s podivuhodným plodem", 125, 65);
+        Prostor rybnik = new Prostor("rybník", "rybník", 130, 70); 
+        Prostor udoli = new Prostor("údolí", "údolí které vede ke konečným chatkám", 135, 80);
+        Prostor zahrada = new Prostor("zahrada", "zahrada s bramborama", 140, 85);
         Prostor napadnaChatka = new Prostor("nápadná_chatka", "nápadná chatka, kde uviděl muže v černém na židli.\n" 
-        +"\nMuž v černém: 'Jsi tady správně, ale je tu ještě poslední úkol,'" + "\n'Chceš červené nebo žluté rajče?'\n");
-        Prostor nenapadnaChatka = new Prostor("nenápadná_chatka", "nenápadná chatka");
+        +"\nMuž v černém: 'Jsi tady správně, ale je tu ještě poslední úkol,'" + "\n'Chceš červené nebo žluté rajče?'\n", 145, 90);
+        Prostor nenapadnaChatka = new Prostor("nenápadná_chatka", "nenápadná chatka", 150, 40);
 
         // přiřazují se průchody mezi prostory (sousedící prostory)
 
