@@ -37,8 +37,16 @@ public class Prostor {
         this.posLeft = posLeft;
         this.posTop = posTop;
         vychody = new HashSet<>();
-        veciVProstoru = new HashMap<>();
+        veciVProstoru = new HashMap<String, Vec>();
     }
+
+    //Prostor(String hala, String vstupní_hala_budovy_VŠE_na_Jižním_městě) {
+    //    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+   // }
+
+    //Prostor(String bufet, String bufet_kam_si_můžete_zajít_na_svačinku) {
+    //    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    //}
 
     public double getPosLeft() {
         return posLeft;
