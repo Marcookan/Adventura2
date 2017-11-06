@@ -81,8 +81,8 @@ public class Main extends Application {
                       zadejPrikazTextArea.setEditable(false);
                       centralText.appendText(hra.vratEpilog());
             }
-            }
-            });
+        }
+     });
             
         //obrazek s mapou             
         FlowPane dolniLista = new FlowPane();
@@ -119,7 +119,8 @@ public class Main extends Application {
                 IHra hra = new Hra();
                 TextoveRozhrani textHra = new TextoveRozhrani(hra);
                 textHra.hraj();
-            } else {
+            } 
+            else {
                 System.out.println("Neplatný parametr");
                 System.exit(1);
             }
