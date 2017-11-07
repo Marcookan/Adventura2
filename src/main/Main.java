@@ -5,6 +5,8 @@
  */
 package main;
 
+import GUI.Mapa;
+import GUI.MenuLista;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -24,8 +26,7 @@ import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import logika.Hra;
-import logika.IHra;
+import logika.*;
 import uiText.TextoveRozhrani;
 
 /**
@@ -36,14 +37,28 @@ public class Main extends Application {
 
     private TextArea centralText;
     private IHra hra;
+
+    public void setHra(IHra hra) {
+        this.hra = hra;
+    }
     private TextField zadejPrikazTextArea;
+    
+    private Mapa mapa;
+    private MenuLista menuLista;
+    
+    private Stage stage;
     
     @Override
     public void start(Stage primaryStage) {
-        IHra hra = new Hra();
+        this.stage = primaryStage;
+        hra = new Hra();
+        
+        mapa = new Mapa(hra);
+        menuLista = new MenuLista(hra, this);
+        
         BorderPane borderPane = new BorderPane();
 
-        TextArea centralText = new TextArea();
+        centralText = new TextArea();
         centralText.setText(hra.vratUvitani());
         centralText.setEditable(false);
         borderPane.setCenter(centralText);
@@ -51,11 +66,12 @@ public class Main extends Application {
         Label zadejPrikazLabel = new Label("Zadej prikaz: ");
         zadejPrikazLabel.setFont(Font.font("Arial", FontWeight.BOLD, 14));
         
-        TextField zadejPrikazTextArea = new TextField("...");
+        zadejPrikazTextArea = new TextField("...");
         zadejPrikazTextArea.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override
             public void handle(ActionEvent event) {
+                
               String vstupniPrikaz = zadejPrikazTextArea.getText();
               String odpovedHry = hra.zpracujPrikaz(vstupniPrikaz);
               
@@ -68,30 +84,31 @@ public class Main extends Application {
                       zadejPrikazTextArea.setEditable(false);
                       centralText.appendText(hra.vratEpilog());
             }
-            }
-            });
+        }
+     });
             
-        //obrazek s mapou
-        
-        FlowPane obrazekFlowPane = new FlowPane();
-        obrazekFlowPane.setPrefSize(200, 200);
-        ImageView obrazekImageView = new ImageView(new Image(Main.class.getResourceAsStream("/zdroje/mapa.jpg"),300,300,false,true));
-        
-        obrazekFlowPane.setAlignment(Pos.CENTER);
-        obrazekFlowPane.getChildren().add(obrazekImageView);
+        //obrazek s mapou             
         FlowPane dolniLista = new FlowPane();
         dolniLista.setAlignment(Pos.CENTER);
         dolniLista.getChildren().addAll(zadejPrikazLabel, zadejPrikazTextArea);
         
-        borderPane.setLeft(obrazekFlowPane);
+        borderPane.setLeft(mapa);
         borderPane.setBottom(dolniLista);
+        borderPane.setTop(menuLista);
 
         Scene scene = new Scene(borderPane, 750, 450);
-
-        primaryStage.setTitle("Hello World!");
+        primaryStage.setTitle("Adventura");
         primaryStage.setScene(scene);
         primaryStage.show();
         zadejPrikazTextArea.requestFocus();
+    }
+
+    public TextArea getCentralText() {
+        return centralText;
+    }
+
+    public Mapa getMapa() {
+        return mapa;
     }
 
     /**
@@ -105,10 +122,18 @@ public class Main extends Application {
                 IHra hra = new Hra();
                 TextoveRozhrani textHra = new TextoveRozhrani(hra);
                 textHra.hraj();
-            } else {
+            } 
+            else {
                 System.out.println("Neplatný parametr");
                 System.exit(1);
             }
         }
+    }
+
+    /**
+     * @return the stage
+     */
+    public Stage getStage() {
+        return stage;
     }
 }
