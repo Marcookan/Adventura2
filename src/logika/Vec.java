@@ -2,36 +2,32 @@
  * Kontrola kódování: Příliš žluťoučký kůň úpěl ďábelské ódy. */
 package logika;
 
-import java.util.Map;
-import java.util.HashMap;
-
-
 /*******************************************************************************
  * Instance třídy Vec představují ...
  *
- * @author    jméno autora
- * @version   0.00.000
+ * @author    Narek Davtyan
+ * @version   ZS 2016/17
  */
 public class Vec
 {
     //== Datové atributy (statické i instancí)======================================
     private String nazev;
     private boolean prenositelnost;
-    private Map<String,Vec> seznamVeci;
+    private String obrazek;
     //== Konstruktory a tovární metody =============================================
 
     /***************************************************************************
      *  Konstruktor třídy
      */
-    public Vec(String nazev, boolean prenositelnost)
+    public Vec(String nazev, boolean prenositelnost, String obrazek)
     {
         this.nazev = nazev;
         this.prenositelnost = prenositelnost;
-        this.seznamVeci = new HashMap<>();
+        this.obrazek = obrazek;
     }
 
     //== Nesoukromé metody (instancí i třídy) ======================================
-    
+
     
     /*****
      * Metoda vrací název věci
@@ -47,18 +43,13 @@ public class Vec
         return prenositelnost;
     
     }
-    /**
-     * Metoda vybírá určitou věc
+
+     /*****
+     * Metoda vrací název souboru obrazku
      */
-    public Vec vyberVec(String jmeno) {
-        Vec vec = null;
-        if (seznamVeci.containsKey(jmeno)) {
-            vec = seznamVeci.get(jmeno);
-            if (vec.jePrenositelna()) {
-                seznamVeci.remove(jmeno);
-            }
-        }
-        return vec;
+     public String getObrazek(){
+        return obrazek;
+    
     }
     
     //== Soukromé metody (instancí i třídy) ========================================

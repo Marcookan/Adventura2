@@ -2,6 +2,8 @@
  * Kontrola kódování: Příliš žluťoučký kůň úpěl ďábelské ódy. */
 package logika;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Map;
 import java.util.HashMap;
 
@@ -70,6 +72,14 @@ public class Igelit
         }
         return nazvy;
 
+    }
+
+    /**
+     * Vraci seznam veci v igelitce
+     * @return seznam veci
+     */
+    public Collection<Vec> getVeci() {
+        return Collections.unmodifiableCollection(seznamVeci.values());
     }
 
 }

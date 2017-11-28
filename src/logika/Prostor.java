@@ -249,4 +249,8 @@ public class Prostor {
         }
         return null;
     }
+
+    public Collection<Vec> getVeci() {
+        return Collections.unmodifiableCollection(veciVProstoru.values());
+    }
 }

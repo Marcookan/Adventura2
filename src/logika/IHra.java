@@ -2,6 +2,8 @@
  * Kontrola kódování: Příliš žluťoučký kůň úpěl ďábelské ódy. */
 package logika;
 
+import utils.Observer;
+
 
 
 
@@ -55,6 +57,24 @@ public interface IHra
      *  @return     odkaz na herní plán
      */
      public HerniPlan getHerniPlan();
+     
+         /**
+     * Vrat igelitku
+     * @return igelitka
+     */
+    public Igelit getIgelit();
+    
+    /**
+     * Zaregistruje pozorovatele
+     * @param observer trida implementujici Observer
+     */
+    public void registerObserver(Observer observer);
+
+    /**
+     * Odregistruje pozorovatele
+     * @param observer trida implementujici Observer
+     */
+    public void removeObserver(Observer observer);
     
     //== ZDĚDĚNÉ METODY ========================================================
     //== INTERNÍ DATOVÉ TYPY ===================================================

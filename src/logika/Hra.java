@@ -1,5 +1,10 @@
 package logika;
 
+import java.util.ArrayList;
+import java.util.List;
+import utils.Observer;
+import utils.Subject;
+
 /**
  *  Třída Hra - třída představující logiku adventury.
  * 
@@ -12,11 +17,12 @@ package logika;
  *@version    pro školní rok 2016/2017
  */
 
-public class Hra implements IHra {
+public class Hra implements IHra, Subject {
     private SeznamPrikazu platnePrikazy;   
     private HerniPlan plan;
     private boolean konecHry = false;
     private Igelit igelit;
+    private List<Observer> listObserveru = new ArrayList<Observer>();
 
     /**
      *  Vytváří hru a inicializuje místnosti (prostřednictvím třídy HerniPlan) a seznam platných příkazů.
@@ -90,8 +96,17 @@ public class Hra implements IHra {
         }
         
         if (plan.jeProhra()){
-            setKonecHry(true);
+            konecHry = true;
+            textKVypsani += "\nProhrál jsi.\n";
         }
+        
+        if (konecHry) {
+            Prostor aktualniMisto = this.getHerniPlan().getAktualniProstor();
+            this.getHerniPlan().setAktualniProstor(new Prostor("", "", aktualniMisto.getPosLeft(), aktualniMisto.getPosTop()));
+            this.igelit = new Igelit();
+        }
+        this.notifyObservers();
+        
         return textKVypsani;
     }
     
@@ -115,6 +130,31 @@ public class Hra implements IHra {
      public HerniPlan getHerniPlan(){
         return plan;
      }
+
+     /**
+     * Vrat igelitku
+     * @return igelitka
+     */
+    public Igelit getIgelit() {
+        return igelit;
+    }
+
+    @Override
+    public void registerObserver(Observer observer) {
+        listObserveru.add(observer);
+    }
+
+    @Override
+    public void removeObserver(Observer observer) {
+        listObserveru.remove(observer);
+    }
+    
+    @Override
+    public void notifyObservers() {
+        for (Observer listObserveruItem : listObserveru) {
+            listObserveruItem.update();
+        }
+    }
     
 }
 

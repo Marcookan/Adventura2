@@ -1,9 +1,5 @@
 package logika;
 
-import java.util.ArrayList;
-import java.util.List;
-import utils.Observer;
-import utils.Subject;
 /**
  *  Class HerniPlan - třída představující mapu a stav adventury.
  * 
@@ -15,14 +11,13 @@ import utils.Subject;
  *@author     Michael Kolling, Lubos Pavlicek, Jarmila Pavlickova, Narek Davtyan
  *@version    pro školní rok 2016/2017
  */
-public class HerniPlan implements Subject{
+public class HerniPlan {
 
     private Prostor aktualniProstor;    
     private boolean vyhra = false;
     private boolean prohra = false;
-    private Hra hra;
 
-    private List<Observer> listObserveru = new ArrayList<Observer>();       //vytvořili jsme list všech observerů
+    // private List<Observer> listObserveru = new ArrayList<Observer>();       //vytvořili jsme list všech observerů
     /**
      *  Konstruktor který vytváří jednotlivé prostory a propojuje je pomocí východů.
      *  Jako výchozí aktuální prostor nastaví halu.
@@ -38,16 +33,16 @@ public class HerniPlan implements Subject{
      */
     private void zalozProstoryHry() {
         // vytvářejí se jednotlivé prostory
-        Prostor rozcesti = new Prostor("rozcestí","rozcestí, na kterém se Dobroslav probudí", 110, 50);
-        Prostor hrusen = new Prostor("hrušeň", "hrušeň, na kterém jsou hrušky", 115, 55);
-        Prostor mangovnik = new Prostor("mangovník","mangovník s mangem", 120, 60);
-        Prostor kaktus = new Prostor("kaktus","kaktus s podivuhodným plodem", 125, 65);
-        Prostor rybnik = new Prostor("rybník", "rybník", 130, 70); 
-        Prostor udoli = new Prostor("údolí", "údolí které vede ke konečným chatkám", 135, 80);
-        Prostor zahrada = new Prostor("zahrada", "zahrada s bramborama", 140, 85);
+        Prostor rozcesti = new Prostor("rozcestí","rozcestí, na kterém se Dobroslav probudí", 190, 393);
+        Prostor hrusen = new Prostor("hrušeň", "hrušeň, na kterém jsou hrušky", 320, 363);
+        Prostor mangovnik = new Prostor("mangovník","mangovník s mangem", 75, 363);
+        Prostor kaktus = new Prostor("kaktus","kaktus s podivuhodným plodem", 63, 269);
+        Prostor rybnik = new Prostor("rybník", "rybník, na kterém tě čeká smrt", 70, 160); 
+        Prostor udoli = new Prostor("údolí", "údolí které vede ke konečným chatkám", 200, 175);
+        Prostor zahrada = new Prostor("zahrada", "zahrada s bramborama", 313, 269);
         Prostor napadnaChatka = new Prostor("nápadná_chatka", "nápadná chatka, kde uviděl muže v černém na židli.\n" 
-        +"\nMuž v černém: 'Jsi tady správně, ale je tu ještě poslední úkol,'" + "\n'Chceš červené nebo žluté rajče?'\n", 145, 90);
-        Prostor nenapadnaChatka = new Prostor("nenápadná_chatka", "nenápadná chatka", 150, 40);
+        +"\nMuž v černém: 'Jsi tady správně, ale je tu ještě poslední úkol,'" + "\n'Chceš červené nebo žluté rajče?'\n", 300, 80);
+        Prostor nenapadnaChatka = new Prostor("nenápadná_chatka", "nenápadná chatka, kde tě čeká smrt", 144, 100);
 
         // přiřazují se průchody mezi prostory (sousedící prostory)
 
@@ -71,14 +66,14 @@ public class HerniPlan implements Subject{
         udoli.setVychod(napadnaChatka);
         udoli.setVychod(nenapadnaChatka);
 
-        Vec hruska = new Vec("hruška", true);
-        Vec sladke_brambory = new Vec("sladké_brambory", true);
-        Vec rane_brambory = new Vec("rané_brambory", false);
-        Vec zluta_koule = new Vec("žluté_rajče", true);
-        Vec cervena_koule = new Vec("červené_rajče", true);
-        Vec mango = new Vec("mango", true);
-        Vec pitahaya = new Vec("pitahaya", true);
-        Vec pomeranc = new Vec("pomeranč", true);
+        Vec hruska = new Vec("hruška", true, "/zdroje/hruska.jpg");
+        Vec sladke_brambory = new Vec("sladké_brambory", true, "/zdroje/sladkebrambory.jpg");
+        Vec rane_brambory = new Vec("rané_brambory", false, "/zdroje/ranebrambory.jpg");
+        Vec zluta_koule = new Vec("žluté_rajče", true, "/zdroje/zluterajcee.jpg");
+        Vec cervena_koule = new Vec("červené_rajče", true, "/zdroje/cervenerajce.jpg");
+        Vec mango = new Vec("mango", true, "/zdroje/mango.jpg");
+        Vec pitahaya = new Vec("pitahaya", true, "/zdroje/pitahaya.jpg");
+        Vec pomeranc = new Vec("pomeranč", true, "/zdroje/pomeranc.jpg");
 
 
         hrusen.vlozVec(hruska);
@@ -110,7 +105,6 @@ public class HerniPlan implements Subject{
      */
     public void setAktualniProstor(Prostor prostor) {
         aktualniProstor = prostor;
-        notifyObservers();
     }
 
     /**
@@ -141,24 +135,4 @@ public class HerniPlan implements Subject{
     public void setVyhra(boolean stav){
         this.vyhra = stav;
     }
-
-
-    @Override
-    public void registerObserver(Observer observer) {
-        listObserveru.add(observer);
-    }
-
-    @Override
-    public void removeObserver(Observer observer) {
-        listObserveru.remove(observer);
-    }
-
-    @Override
-    public void notifyObservers() {
-        for (Observer listObserveruItem : listObserveru){
-            listObserveruItem.update();
-            
-        }
-    }
-
 }

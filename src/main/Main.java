@@ -5,26 +5,25 @@
  */
 package main;
 
+import GUI.Igelitka;
 import GUI.Mapa;
 import GUI.MenuLista;
+import GUI.Napoveda;
+import GUI.OblastPredmety;
+import GUI.Vychody;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
-import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import logika.*;
 import uiText.TextoveRozhrani;
@@ -43,6 +42,10 @@ public class Main extends Application {
     }
     private TextField zadejPrikazTextArea;
     
+    private Igelitka igelitka;
+    private Vychody vychody;
+    private OblastPredmety predmety;
+    private Napoveda napoveda;
     private Mapa mapa;
     private MenuLista menuLista;
     
@@ -64,7 +67,7 @@ public class Main extends Application {
         borderPane.setCenter(centralText);
         
         Label zadejPrikazLabel = new Label("Zadej prikaz: ");
-        zadejPrikazLabel.setFont(Font.font("Arial", FontWeight.BOLD, 14));
+        zadejPrikazLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 14));
         
         zadejPrikazTextArea = new TextField("...");
         zadejPrikazTextArea.setOnAction(new EventHandler<ActionEvent>() {
@@ -86,23 +89,43 @@ public class Main extends Application {
             }
         }
      });
-            
-        //obrazek s mapou             
+        
         FlowPane dolniLista = new FlowPane();
         dolniLista.setAlignment(Pos.CENTER);
         dolniLista.getChildren().addAll(zadejPrikazLabel, zadejPrikazTextArea);
         
-        borderPane.setLeft(mapa);
+        predmety = new OblastPredmety(hra, zadejPrikazTextArea);
+        igelitka = new Igelitka(hra, zadejPrikazTextArea);
+        vychody = new Vychody(hra, zadejPrikazTextArea);
+        napoveda = new Napoveda(zadejPrikazTextArea);
+            
+        //obrazek s mapou, predmety v oblasti, igelitka         
+        VBox leveMenu = new VBox();
+        leveMenu.getChildren().add(mapa);
+        leveMenu.getChildren().add(predmety);
+        leveMenu.getChildren().add(igelitka);
+        borderPane.setLeft(leveMenu);
+        
+        // východy z prostoru a nápověda
+        BorderPane praveMenu = new BorderPane();
+        praveMenu.setCenter(vychody);
+        praveMenu.setBottom(napoveda);
+        borderPane.setRight(praveMenu);
         borderPane.setBottom(dolniLista);
         borderPane.setTop(menuLista);
+        
 
-        Scene scene = new Scene(borderPane, 750, 450);
+
+        Scene scene = new Scene(borderPane, 1180, 800);
         primaryStage.setTitle("Adventura");
         primaryStage.setScene(scene);
         primaryStage.show();
         zadejPrikazTextArea.requestFocus();
     }
 
+    public TextField getZadejPrikazTextArea() {
+        return zadejPrikazTextArea;
+    }
     public TextArea getCentralText() {
         return centralText;
     }
@@ -111,6 +134,17 @@ public class Main extends Application {
         return mapa;
     }
 
+    public Igelitka getIgelitka() {
+        return igelitka;
+    }
+    
+    public OblastPredmety getOblastPredmety() {
+        return predmety;
+    }
+    
+    public Vychody getVychody() {
+        return vychody;
+    }
     /**
      * @param args the command line arguments
      */
