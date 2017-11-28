@@ -6,6 +6,7 @@
 package GUI;
 
 import javafx.event.ActionEvent;
+<<<<<<< HEAD
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -15,12 +16,26 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
+=======
+import javafx.event.Event;
+import javafx.event.EventHandler;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCombination;
+>>>>>>> 345e3d2123f3bb68129e8b240b7f611c43789c2e
 import logika.Hra;
 import logika.IHra;
 import main.Main;
 
 /**
+<<<<<<< HEAD
  * Hlavni lista menu
+=======
+ *
+>>>>>>> 345e3d2123f3bb68129e8b240b7f611c43789c2e
  * @author davn00
  */
 public class MenuLista extends MenuBar{
@@ -28,11 +43,14 @@ public class MenuLista extends MenuBar{
     private IHra hra;
     private Main main;
     
+<<<<<<< HEAD
     /**
      * Konstruktor hlavniho menu.
      * @param hra hrana hra
      * @param main hlavni trida
      */
+=======
+>>>>>>> 345e3d2123f3bb68129e8b240b7f611c43789c2e
     public MenuLista(IHra hra, Main main){
         this.hra = hra;
         this.main = main;
@@ -41,15 +59,24 @@ public class MenuLista extends MenuBar{
     
     private void init(){
         Menu novySoubor = new Menu("Adventura");
+<<<<<<< HEAD
         Menu napoveda = new Menu("Help");
     
         MenuItem novaHra = new MenuItem("Nova hra"); 
     
         novaHra.setAccelerator(KeyCombination.keyCombination("Ctrl+N"));        
+=======
+    
+        MenuItem novaHra = new MenuItem("Nova hra"); 
+                // new ImageView(new Image(Main.class.getResourceAsStream("/zdroje/ikona.png"))));
+    
+        novaHra.setAccelerator(KeyCombination.keyCombination("Ctrl+H"));        // teď když dáme ctrl+h tak se nastartuje hra myslím
+>>>>>>> 345e3d2123f3bb68129e8b240b7f611c43789c2e
         MenuItem konecHry = new MenuItem("Konec hry");
     
         novySoubor.getItems().addAll(novaHra, konecHry);
         
+<<<<<<< HEAD
         MenuItem oProgramu = new MenuItem("O programu");         
         MenuItem napovedaItem = new MenuItem("Napoveda");
         
@@ -57,6 +84,9 @@ public class MenuLista extends MenuBar{
         napoveda.getItems().addAll(oProgramu, napovedaItem);
         
         this.getMenus().addAll(novySoubor, napoveda);
+=======
+        this.getMenus().addAll(novySoubor);
+>>>>>>> 345e3d2123f3bb68129e8b240b7f611c43789c2e
         
         konecHry.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -74,6 +104,7 @@ public class MenuLista extends MenuBar{
                 main.getMapa().newGame(hra);
                 main.setHra(hra);
                 main.getCentralText().setText(hra.vratUvitani());
+<<<<<<< HEAD
                 main.getOblastPredmety().newGame(hra);
                 main.getVychody().newGame(hra);
                 main.getZadejPrikazTextArea().setEditable(true);
@@ -117,6 +148,10 @@ public class MenuLista extends MenuBar{
             }
         });
         
+=======
+            }
+        });
+>>>>>>> 345e3d2123f3bb68129e8b240b7f611c43789c2e
     }
     
 }

@@ -1,5 +1,9 @@
 package logika;
 
+import java.util.ArrayList;
+import java.util.List;
+import utils.Observer;
+import utils.Subject;
 /**
  *  Class HerniPlan - třída představující mapu a stav adventury.
  * 
@@ -11,13 +15,17 @@ package logika;
  *@author     Michael Kolling, Lubos Pavlicek, Jarmila Pavlickova, Narek Davtyan
  *@version    pro školní rok 2016/2017
  */
-public class HerniPlan {
+public class HerniPlan implements Subject{
 
     private Prostor aktualniProstor;    
     private boolean vyhra = false;
     private boolean prohra = false;
 
+<<<<<<< HEAD
     // private List<Observer> listObserveru = new ArrayList<Observer>();       //vytvořili jsme list všech observerů
+=======
+    private List<Observer> listObserveru = new ArrayList<Observer>();       //vytvořili jsme list všech observerů
+>>>>>>> 345e3d2123f3bb68129e8b240b7f611c43789c2e
     /**
      *  Konstruktor který vytváří jednotlivé prostory a propojuje je pomocí východů.
      *  Jako výchozí aktuální prostor nastaví halu.
@@ -76,6 +84,7 @@ public class HerniPlan {
         Vec pomeranc = new Vec("pomeranč", true, "/zdroje/pomeranc.jpg");
 
 
+
         hrusen.vlozVec(hruska);
         zahrada.vlozVec(sladke_brambory);
         zahrada.vlozVec(rane_brambory);
@@ -105,6 +114,7 @@ public class HerniPlan {
      */
     public void setAktualniProstor(Prostor prostor) {
         aktualniProstor = prostor;
+        notifyObservers();
     }
 
     /**
@@ -135,4 +145,27 @@ public class HerniPlan {
     public void setVyhra(boolean stav){
         this.vyhra = stav;
     }
+<<<<<<< HEAD
+=======
+
+
+    @Override
+    public void registerObserver(Observer observer) {
+        listObserveru.add(observer);
+    }
+
+    @Override
+    public void removeObserver(Observer observer) {
+        listObserveru.remove(observer);
+    }
+
+    @Override
+    public void notifyObservers() {
+        for (Observer listObserveruItem : listObserveru){
+            listObserveruItem.update();
+            
+        }
+    }
+
+>>>>>>> 345e3d2123f3bb68129e8b240b7f611c43789c2e
 }

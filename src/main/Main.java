@@ -5,12 +5,17 @@
  */
 package main;
 
+<<<<<<< HEAD
 import GUI.Igelitka;
 import GUI.Mapa;
 import GUI.MenuLista;
 import GUI.Napoveda;
 import GUI.OblastPredmety;
 import GUI.Vychody;
+=======
+import GUI.Mapa;
+import GUI.MenuLista;
+>>>>>>> 345e3d2123f3bb68129e8b240b7f611c43789c2e
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -42,6 +47,7 @@ public class Main extends Application {
     }
     private TextField zadejPrikazTextArea;
     
+<<<<<<< HEAD
     private Igelitka igelitka;
     private Vychody vychody;
     private OblastPredmety predmety;
@@ -54,6 +60,13 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         this.stage = primaryStage;
+=======
+    private Mapa mapa;
+    private MenuLista menuLista;
+    
+    @Override
+    public void start(Stage primaryStage) {
+>>>>>>> 345e3d2123f3bb68129e8b240b7f611c43789c2e
         hra = new Hra();
         
         mapa = new Mapa(hra);
@@ -89,11 +102,17 @@ public class Main extends Application {
             }
         }
      });
+<<<<<<< HEAD
         
+=======
+            
+        //obrazek s mapou             
+>>>>>>> 345e3d2123f3bb68129e8b240b7f611c43789c2e
         FlowPane dolniLista = new FlowPane();
         dolniLista.setAlignment(Pos.CENTER);
         dolniLista.getChildren().addAll(zadejPrikazLabel, zadejPrikazTextArea);
         
+<<<<<<< HEAD
         predmety = new OblastPredmety(hra, zadejPrikazTextArea);
         igelitka = new Igelitka(hra, zadejPrikazTextArea);
         vychody = new Vychody(hra, zadejPrikazTextArea);
@@ -117,15 +136,25 @@ public class Main extends Application {
 
 
         Scene scene = new Scene(borderPane, 1180, 800);
+=======
+        borderPane.setLeft(mapa);
+        borderPane.setBottom(dolniLista);
+        borderPane.setTop(menuLista);
+
+        Scene scene = new Scene(borderPane, 750, 450);
+>>>>>>> 345e3d2123f3bb68129e8b240b7f611c43789c2e
         primaryStage.setTitle("Adventura");
         primaryStage.setScene(scene);
         primaryStage.show();
         zadejPrikazTextArea.requestFocus();
     }
 
+<<<<<<< HEAD
     public TextField getZadejPrikazTextArea() {
         return zadejPrikazTextArea;
     }
+=======
+>>>>>>> 345e3d2123f3bb68129e8b240b7f611c43789c2e
     public TextArea getCentralText() {
         return centralText;
     }
@@ -134,6 +163,7 @@ public class Main extends Application {
         return mapa;
     }
 
+<<<<<<< HEAD
     public Igelitka getIgelitka() {
         return igelitka;
     }
@@ -145,6 +175,8 @@ public class Main extends Application {
     public Vychody getVychody() {
         return vychody;
     }
+=======
+>>>>>>> 345e3d2123f3bb68129e8b240b7f611c43789c2e
     /**
      * @param args the command line arguments
      */
